@@ -37,7 +37,7 @@ timers = [
         'message': '1 phút đếm ngược cho đến giờ về!!!'
     },
     {
-        'time': '4:44:00 PM',
+        'time': '4:46:00 PM',
         'message': 'Test ok'
     },
 
