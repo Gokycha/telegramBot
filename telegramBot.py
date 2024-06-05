@@ -109,7 +109,7 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await asyncio.sleep(30)
     await update.message.reply_text('test is ok')
     
-async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('Help cái gì mà help -.-')
             
 def error(update, context):
