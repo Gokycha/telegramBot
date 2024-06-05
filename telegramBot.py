@@ -36,9 +36,22 @@ timers = [
         'message': '1 phút đếm ngược cho đến giờ về!!!'
     },
     {
-        'time': '3:46:00 PM',
+        'time': '3:52:00 PM',
         'message': 'Test ok'
     },
+    {
+        'time': '3:53:00 PM',
+        'message': 'Test ok'
+    },
+    {
+        'time': '3:54:00 PM',
+        'message': 'Test ok'
+    },
+    {
+        'time': '3:55:00 PM',
+        'message': 'Test ok'
+    },
+
 ]
 
 timeThreads = []
