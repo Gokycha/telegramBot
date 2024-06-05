@@ -35,6 +35,10 @@ timers = [
         'time': '4:59:00 PM',
         'message': '1 phút đếm ngược cho đến giờ về!!!'
     },
+    {
+        'time': '3:46:00 PM',
+        'message': 'Test ok'
+    },
 ]
 
 timeThreads = []
@@ -49,7 +53,7 @@ logger = logging.getLogger(__name__)
 # Hàm start khi người dùng bắt đầu trò chuyện với bot
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     global timers, timeThreads
-    await update.message.reply_text('Thứ này được tạo ra để nhắc nhở ae đi ăn, lên ngủ trưa và về đúng giờ')
+    await update.message.reply_text('Thứ này được tạo ra để nhắc nhở ae đi ăn, lên ngủ trưa và về đúng giờ!!!')
     for timer in timers:
         # tạo hàm để chạy bộ hẹn giờ
         async def timerDef(timer):
