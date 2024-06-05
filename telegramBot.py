@@ -20,9 +20,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     CHAT_ID = update.message.chat_id
     print(CHAT_ID)
     while True:
-        if CHAT_ID:
-            print(CHAT_ID)
-            await app.bot.send_message(chat_id=CHAT_ID, text='test')
+        # if CHAT_ID:
+        #     print(CHAT_ID)
+        #     await app.bot.send_message(chat_id=CHAT_ID, text='test')
+        if datetime.datetime.now().strftime("%I:%M:%S %p") == "11:30:00 AM":
+            await app.bot.send_message(chat_id=CHAT_ID, text='Tất cả đi ăn trưa!!!')
         await asyncio.sleep(10)  
             
 def error(update, context):
