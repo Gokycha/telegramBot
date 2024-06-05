@@ -105,6 +105,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     #     await update.message.reply_text('Lỗi khi kích hoạt bộ hẹn giờ:' + e)
         
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text('test...')
+    await asyncio.sleep(30)
     await update.message.reply_text('test is ok')
     
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
