@@ -106,8 +106,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('test...')
-    await asyncio.sleep(30)
-    await update.message.reply_text('test is ok')
+    async def test1():
+        await asyncio.sleep(30)
+        await update.message.reply_text('test is ok')
+    def test2():
+        asyncio.run(test1())
+    timeThread = threading.Thread(target=test2)
+    timeThread.start()
+
     
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('Help cái gì mà help -.-')
