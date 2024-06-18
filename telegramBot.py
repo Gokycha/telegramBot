@@ -25,18 +25,6 @@ timers = [
         'message': 'Ăn xong rồi!!!'
     },
     {
-        'time': '4:50:00 PM',
-        'message': '10 phút đếm ngược cho đến giờ về!!!'
-    },
-    {
-        'time': '4:55:00 PM',
-        'message': '5 phút đếm ngược cho đến giờ về!!!'
-    },
-    {
-        'time': '4:59:00 PM',
-        'message': '1 phút đếm ngược cho đến giờ về!!!'
-    },
-    {
         'time': '4:54:00 PM',
         'message': 'Test ok'
     },
@@ -79,7 +67,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 if time < now:
                     time += datetime.timedelta(days=1)
                 timeSleep = (time - now).total_seconds()
-                print('Count time in', timeSleep, 's to message', timer['message'])         
+                print('Count time in', timeSleep, 's to message', timer['message'])
+                # await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')        
                 # await asyncio.sleep(timeSleep)
                 while time > datetime.datetime.now():
                     await asyncio.sleep(1)
@@ -107,8 +96,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('test...')
     async def test1():
-        await asyncio.sleep(30)
-        await update.message.reply_text('test is ok')
+        while True:
+            await asyncio.sleep(5)
+            await update.message.reply_text('test is ok')
     def test2():
         asyncio.run(test1())
     timeThread = threading.Thread(target=test2)
