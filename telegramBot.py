@@ -6,26 +6,33 @@ import datetime
 import multiprocessing
 import threading
 from time import sleep
+import pytz
 
 # Token của bot
 TOKEN = '7392075828:AAEfBjUKzgQnrIT4jIkhUV2YzKGxQOnGXDM'
 
+vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+
 # Hẹn giờ
 timers = [
     {
+        'time': '11:25:00 AM',
+        'message': 'Sắp đến giờ ăn!!! Anh em chuẩn bị 😑.'
+    },
+    {
         'time': '11:30:00 AM',
-        'message': 'Đã đến giờ đi ăn!!!'
+        'message': 'Toàn thể anh em chú ý. Đã đến giờ đi ăn!!! 😃😃😃'
     },
     {
         'time': '5:00:00 PM',
-        'message': 'Đã đến giờ về!!!'
+        'message': 'Gần đến giờ về!!! Anh em chuẩn bị!'
     },
     {
         'time': '12:00:00 AM',
-        'message': 'Ăn xong rồi!!!'
+        'message': 'Ăn xong rồi! Lên thôi anh em 😊.'
     },
     {
-        'time': '9:04:00 AM',
+        'time': '9:20:00 AM',
         'message': 'Test ok'
     },
 ]
@@ -59,7 +66,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         # tạo hàm để chạy bộ hẹn giờ
         async def timerDef(timer):
             while True:
-                now = datetime.datetime.now()
+                now = datetime.datetime.now(vietnam_tz)
                 today = now.today()
                 time = datetime.datetime.strptime(timer['time'], "%I:%M:%S %p").time()
                 time = datetime.datetime.combine(today, time)
