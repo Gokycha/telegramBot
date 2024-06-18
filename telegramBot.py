@@ -113,7 +113,7 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('test...')
     async def test1():
         while True:
-            await asyncio.sleep(5)
+            sleep(5)
             print('test is ok')
             await update.message.reply_text('test is ok')
     def test2():
