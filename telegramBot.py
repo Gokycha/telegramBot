@@ -25,15 +25,15 @@ timers = [
         'message': 'Ăn xong rồi!!!'
     },
     {
-        'time': '8:24:00 AM',
+        'time': '8:48:00 AM',
         'message': 'Test ok'
     },
     {
-        'time': '8:25:00 AM',
+        'time': '8:49:00 AM',
         'message': 'Test ok'
     },
     {
-        'time': '8:26:00 AM',
+        'time': '8:50:00 AM',
         'message': 'Test ok'
     },
     {
@@ -71,10 +71,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # except Exception as e:
     #     await update.message.reply_text('Lỗi khi hủy bộ hẹn giờ cũ:' + e)
     # try:
+    await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')
+    await update.message.reply_text('Bộ hẹn giờ bao gồm')
+
     stopAllThreads = False
     for timer in timers:
         # tạo hàm để chạy bộ hẹn giờ
-        async def timerDef(timer):
+        async def timerDef():
             while True:
                 now = datetime.datetime.now()
                 today = now.today()
@@ -84,28 +87,24 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                     time += datetime.timedelta(days=1)
                 timeSleep = (time - now).total_seconds()
                 print('Count time in', timeSleep, 's to message', timer['message'])
+                await update.message.reply_text(f'Thời gian: {timer['time']}. Thông báo: {timer['message']}. Thời gian còn: {timeSleep}')
                 # await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')        
                 # await asyncio.sleep(timeSleep)
                 while time > datetime.datetime.now():
-                    await asyncio.sleep(1)
+                    sleep(10)
                     if stopAllThreads:
                         break
                 if stopAllThreads:
                     break
                 await update.message.reply_text(timer['message'])
-        # tạo hàm để chạy trong thread
-        def run_coroutine():
-            asyncio.run(timerDef(timer))
         # tạo thread
         # timeThread = multiprocessing.Process(target=run_coroutine)
-        timeThread = threading.Thread(target=run_coroutine)
+        timeThread = threading.Thread(target=timerDef)
         timeThread.start()
         print('thread start with time', timer['time'])
         timeThreads.append(timeThread)
-    await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')
-    await update.message.reply_text('Bộ hẹn giờ bao gồm')
-    for timer in timers:
-        await update.message.reply_text('Thời gian: ' + timer['time'] + '. Thông báo: ' + timer['message'])
+    # for timer in timers:
+    #     await update.message.reply_text(f'Thời gian: {timer['time']}. Thông báo: {timer['message']}. Thời gian còn: {}')
     # except Exception as e:
     #     await update.message.reply_text('Lỗi khi kích hoạt bộ hẹn giờ:' + e)
         
@@ -116,9 +115,7 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             sleep(5)
             print('test is ok')
             await update.message.reply_text('test is ok')
-    def test2():
-        asyncio.run(test1())
-    timeThread = threading.Thread(target=test2)
+    timeThread = threading.Thread(target=test1)
     timeThread.start()
 
     
