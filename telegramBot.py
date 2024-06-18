@@ -25,15 +25,15 @@ timers = [
         'message': 'Ăn xong rồi!!!'
     },
     {
-        'time': '8:48:00 AM',
+        'time': '8:51:00 AM',
         'message': 'Test ok'
     },
     {
-        'time': '8:49:00 AM',
+        'time': '8:52:00 AM',
         'message': 'Test ok'
     },
     {
-        'time': '8:50:00 AM',
+        'time': '8:53:00 AM',
         'message': 'Test ok'
     },
     {
