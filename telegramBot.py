@@ -25,7 +25,23 @@ timers = [
         'message': 'Ăn xong rồi!!!'
     },
     {
-        'time': '4:54:00 PM',
+        'time': '8:24:00 AM',
+        'message': 'Test ok'
+    },
+    {
+        'time': '8:25:00 AM',
+        'message': 'Test ok'
+    },
+    {
+        'time': '8:26:00 AM',
+        'message': 'Test ok'
+    },
+    {
+        'time': '8:27:00 AM',
+        'message': 'Test ok'
+    },
+    {
+        'time': '8:28:00 AM',
         'message': 'Test ok'
     },
 
@@ -98,6 +114,7 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     async def test1():
         while True:
             await asyncio.sleep(5)
+            print('test is ok')
             await update.message.reply_text('test is ok')
     def test2():
         asyncio.run(test1())
