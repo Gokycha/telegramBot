@@ -32,7 +32,7 @@ timers = [
         'message': 'Ăn xong rồi! Lên thôi anh em 😊.'
     },
     {
-        'time': '9:56:00 AM',
+        'time': '10:00:00 AM',
         'message': 'Test ok'
     },
 ]
