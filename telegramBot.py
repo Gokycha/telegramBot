@@ -25,7 +25,7 @@ timers = [
         'message': 'Ăn xong rồi!!!'
     },
     {
-        'time': '8:51:00 AM',
+        'time': '8:57:00 AM',
         'message': 'Test ok'
     },
     {
@@ -88,15 +88,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 timeSleep = (time - now).total_seconds()
                 print('Count time in', timeSleep, 's to message', timer['message'])
                 await update.message.reply_text(f"Thời gian: {timer['time']}. Thông báo: {timer['message']}. Thời gian còn: {timeSleep}")
-                # await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')        
-                # await asyncio.sleep(timeSleep)
-                while time > datetime.datetime.now():
-                    sleep(10)
-                    if stopAllThreads:
-                        break
-                if stopAllThreads:
-                    break
-                await update.message.reply_text(timer['message'])
+                await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')        
+                sleep(timeSleep)
+                # while time > datetime.datetime.now():
+                #     sleep(10)
+                #     if stopAllThreads:
+                #         break
+                # if stopAllThreads:
+                #     break
+                # await update.message.reply_text(timer['message'])
         # tạo thread
         # timeThread = multiprocessing.Process(target=run_coroutine)
         timeThread = threading.Thread(target=timerDef)
