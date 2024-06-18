@@ -32,7 +32,7 @@ timers = [
         'message': 'Ăn xong rồi! Lên thôi anh em 😊.'
     },
     {
-        'time': '9:20:00 AM',
+        'time': '9:56:00 AM',
         'message': 'Test ok'
     },
 ]
@@ -65,24 +65,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     for timer in timers:
         # tạo hàm để chạy bộ hẹn giờ
         async def timerDef(timer):
+            time = datetime.datetime.strptime(timer['time'], "%I:%M:%S %p").time()
             while True:
-                now = datetime.datetime.now(vietnam_tz)
-                today = now.today()
-                time = datetime.datetime.strptime(timer['time'], "%I:%M:%S %p").time()
-                time = datetime.datetime.combine(today, time)
-                if time < now:
-                    time += datetime.timedelta(days=1)
-                timeSleep = (time - now).total_seconds()
-                print('Count time in', timeSleep, 's to message', timer['message'])
-                await update.message.reply_text(f"Đã kích hoạt bộ hẹn giờ mới!!! Time sleep: {timeSleep}. {timer['time']}")        
-                await asyncio.sleep(timeSleep)
-                # while time > datetime.datetime.now():
-                #     await asyncio.sleep(1)
-                #     if stopAllThreads:
-                #         break
-                # if stopAllThreads:
-                #     break
-                await update.message.reply_text(timer['message'])
+                now = datetime.datetime.now(vietnam_tz).time()
+                await asyncio.sleep(1)
+                if(time.hour == now.hour and time.minute == now.minute and time.second == now.second):
+                    await update.message.reply_text(timer['message'])
         # tạo hàm để chạy trong thread
         def run_coroutine():
             asyncio.run(timerDef(timer))
