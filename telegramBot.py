@@ -87,7 +87,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                     time += datetime.timedelta(days=1)
                 timeSleep = (time - now).total_seconds()
                 print('Count time in', timeSleep, 's to message', timer['message'])
-                await update.message.reply_text(f'Thời gian: {timer['time']}. Thông báo: {timer['message']}. Thời gian còn: {timeSleep}')
+                await update.message.reply_text(f"Thời gian: {timer['time']}. Thông báo: {timer['message']}. Thời gian còn: {timeSleep}")
                 # await update.message.reply_text('Đã kích hoạt bộ hẹn giờ mới!!!')        
                 # await asyncio.sleep(timeSleep)
                 while time > datetime.datetime.now():
